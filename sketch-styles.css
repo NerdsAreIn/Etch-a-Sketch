@@ -1,14 +1,20 @@
-
+body {
+background-image: url("sketch-images/blank paper.jpg");
+background-size: 100vw 100vh;
+background-repeat: no-repeat;
+}
 #container {
-width: 600px;
-border: 1px solid rgb(75, 73, 73);
-height: 600px;
+width: 300px;
+height: 300px;
 padding: 0;
 box-sizing: content-box;
+overflow: auto;
+margin: 25vh auto 20px;
+
 }
 .square {
-border: 1px solid black;
+border: 1px solid grey;
 float: left;
 margin: 0;
-box-sizing: border-box;
+background-color: white;
 }
