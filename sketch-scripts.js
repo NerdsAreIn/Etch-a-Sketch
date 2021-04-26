@@ -2,7 +2,7 @@ const container = document.querySelector("#container");
 const borderWidth = 1;
 const containerWidth = 300;
 //let setNumber = prompt("Enter a number between 2 and 100", "");
-let setNumber = 7;
+let setNumber = 30;
 // FIXME: ^ doesn't work with all numbers... 
 let squareWidth = containerWidth/setNumber;
 
@@ -62,13 +62,40 @@ window.onload = () => {
 makeVisible();
 };
 
+// Below is a working function to make the title letters fade in one at a time:
 let timeIndex = 2;
 function makeVisible() {
 	for (let i = 0; i < letters.length; i++) {
-        let t = 1;
-		letters[i].classList.add("visible");
+        letters[i].classList.add("visible");
 		letters[i].style.transition = `opacity ${timeIndex}s`;
         timeIndex += 2;
 	}
 }
 
+const squares = Array.from(document.getElementsByClassName("square"));
+
+let interval;
+let mouseIsDown;
+
+const colourSquares = function () {
+		if (mouseIsDown) {
+	this.style.backgroundColor = "black";
+		}
+};
+
+squares.forEach(square => {
+	square.addEventListener("mousedown", () => {
+            mouseIsDown = true;
+            colourSquares();        		
+	});
+	square.addEventListener("mouseover", colourSquares);
+    square.addEventListener("mouseup", () => {
+			mouseIsDown = false;
+          square.removeEventListener("mouseover", colourSquares);
+	});	
+	square.addEventListener("click", () => {
+			square.style.backgroundColor = "black";
+	});
+});
+	
+	
