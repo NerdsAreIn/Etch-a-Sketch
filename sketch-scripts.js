@@ -1,8 +1,8 @@
 const container = document.querySelector("#container");
 const borderWidth = 1;
 const containerWidth = 300;
-let setNumber = prompt("Enter a number between 2 and 100", "");
-//let setNumber = 7;
+//let setNumber = prompt("Enter a number between 2 and 100", "");
+let setNumber = 7;
 // FIXME: ^ doesn't work with all numbers... 
 let squareWidth = containerWidth/setNumber;
 
@@ -52,4 +52,23 @@ function addSquares() {
 }
 
 addSquares();
+
+const letters = Array.from(document.getElementsByTagName("span"));
+letters.forEach(letter => {
+letter.className = "letter";
+});
+
+window.onload = () => {
+makeVisible();
+};
+
+let timeIndex = 2;
+function makeVisible() {
+	for (let i = 0; i < letters.length; i++) {
+        let t = 1;
+		letters[i].classList.add("visible");
+		letters[i].style.transition = `opacity ${timeIndex}s`;
+        timeIndex += 2;
+	}
+}
 
