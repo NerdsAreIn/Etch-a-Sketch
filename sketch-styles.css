@@ -30,7 +30,19 @@ src: url("sketch-fonts/Scrapbooking.ttf") format("TrueType");
 position: absolute;
 left: 25vw;
 top: 10px;
-
+}
+#tools-div {
+position: absolute;
+right: 21vw;
+top: 8px;
+/*border: 1px solid darkred;*/
+width: 140px;
+height: 290px;
+}
+img {
+width: 140px;
+height: auto;
+margin: 50px 0 5px;
 }
 .letter {
 font-family: "scribble-script";
