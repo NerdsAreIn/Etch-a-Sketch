@@ -13,7 +13,7 @@ overflow: auto;
 margin: 25vh auto 20px;
 }
 .square {
-border: 1px solid grey;
+border: 0.5px solid lightgrey;
 float: left;
 margin: 0;
 background-color: white;
@@ -30,6 +30,22 @@ src: url("sketch-fonts/Scrapbooking.ttf") format("TrueType");
 position: absolute;
 left: 25vw;
 top: 10px;
+font-size: 24px;
+}
+#resizeGrid {
+position: absolute;
+left: 22vw;
+top: 125px;
+padding: 5px;
+font-family: "scribble-script";
+font-size: 20px;
+}
+input {
+width: 50px;
+margin: 5px 22px;
+border-radius: 3px;
+font-family: "scribble-script";
+text-align: center;
 }
 #tools-div {
 position: absolute;
@@ -39,10 +55,20 @@ top: 8px;
 width: 140px;
 height: 290px;
 }
-img {
-width: 140px;
+#pastel, #pen {
+width: 120px;
 height: auto;
-margin: 50px 0 5px;
+margin: 1px auto;
+}
+#eraser {
+width: 80px;
+height: auto;
+margin: 1px 30px 1px;
+}
+p {
+font-family: "scrapbooking";
+font-size: 20px;
+margin: 30px 0 4px;
 }
 .letter {
 font-family: "scribble-script";

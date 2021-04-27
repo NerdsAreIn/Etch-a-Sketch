@@ -1,7 +1,19 @@
 const container = document.querySelector("#container");
 const containerWidth = 300;
+const inputField = document.querySelector("input");
 //let setNumber = prompt("Enter a number between 2 and 100", "");
-let setNumber = 40;
+let setNumber = Number(inputField.value);
+/*function updateNumber() {
+	setNumber = this.value;
+}*/
+
+//let inputText = document.createTextNode("input").nodeValue;
+inputField.addEventListener("input", () => {
+	setNumber = Number(inputField.value);
+});
+
+
+
 let squareWidth = containerWidth/setNumber;
 
 // The below code works a little better: grids with any number of squares fit within container, but some leave a gap/margin inside the border
@@ -71,11 +83,40 @@ function makeVisible() {
 const squares = Array.from(document.getElementsByClassName("square"));
 let mouseIsDown;
 
+const pastel = document.getElementById("pastel");
+pastel.onclick = () => {
+	squares.forEach(square => {
+		square.className = "square pastel";
+	})
+};
+const pen = document.getElementById("pen");
+	pen.onclick = () => {
+	squares.forEach(square => {
+		square.className = "square pen";	
+	})
+};
+const eraser = document.getElementById("eraser");
+	eraser.onclick = () => {
+	squares.forEach(square => {
+		square.className = "square eraser";	
+	})
+};
+
 const colourSquares = function () {
 	if (mouseIsDown) {
+        if (this.className == "square pastel") {
+		this.style.backgroundColor = "#9e606f";
+		}
+		else if (this.className == "square eraser") {
+		this.style.backgroundColor = "white";
+		}
+		else if (this.className == "square pen") {
 		this.style.backgroundColor = "black";
+		}
+        else this.style.backgroundColor = "black"; ;
 	}
 };
+
 
 squares.forEach(square => {
 	square.addEventListener("mousedown", () => {
@@ -88,7 +129,16 @@ squares.forEach(square => {
          square.removeEventListener("mouseover", colourSquares);
 	});	
 	square.addEventListener("click", () => {
-		 square.style.backgroundColor = "black";
+		if (square.className == "square pastel") {
+		square.style.backgroundColor = "#9e606f";
+		}
+		else if (square.className == "square eraser") {
+		square.style.backgroundColor = "white";
+		}
+		else if (square.className == "square pen") {
+		square.style.backgroundColor = "black";
+		}
+        else square.style.backgroundColor = "black"; ;
 	});
 });
 	
