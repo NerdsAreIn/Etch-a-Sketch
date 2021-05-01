@@ -1,36 +1,32 @@
 const container = document.querySelector("#container");
 const containerWidth = 300;
 const inputField = document.querySelector("input");
-//let setNumber = prompt("Enter a number between 2 and 100", "");
 let setNumber = Number(inputField.value);
-/*function updateNumber() {
-	setNumber = this.value;
-}*/
+let button = document.querySelector("button");
 
-//let inputText = document.createTextNode("input").nodeValue;
-inputField.addEventListener("input", () => {
-	setNumber = Number(inputField.value);
-});
+//let setNumber = prompt("Enter a number between 2 and 100", "");
 
 
+ let squareWidth = containerWidth/setNumber;
 
-let squareWidth = containerWidth/setNumber;
+
+   
+
 
 // The below code works a little better: grids with any number of squares fit within container, but some leave a gap/margin inside the border
 //squareWidth = Math.floor(squareWidth) + "px";
 // NO - even worse: 
 //squareWidth = Math.ceil(squareWidth) + "px";
 
-squareWidth = squareWidth.toFixed(1);
+
 
 // To ensure that total area of squares doesn't exceed that of container: 
 if ((squareWidth * setNumber) > containerWidth) {
     squareWidth = squareWidth - 0.1 + "px";
-	console.log(squareWidth)
-}
+	}
 else squareWidth = squareWidth + "px";
 
-console.log(squareWidth); 
+//console.log(squareWidth); 
 
 function addRows() {
 	for(let r = 1; r <= setNumber; r++) {
@@ -141,5 +137,16 @@ squares.forEach(square => {
         else square.style.backgroundColor = "black"; ;
 	});
 });
-	
+
+inputField.addEventListener("input", updateGrid);
+
+function updateGrid(squareWidth) {
+	 setNumber = Number(inputField.value);
+     console.log(setNumber);
+     squareWidth = containerWidth/setNumber;
+     squareWidth = squareWidth.toFixed(1);
+     console.log(squareWidth);
+     return squareWidth;
+}
+    
 	
