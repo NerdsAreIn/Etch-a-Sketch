@@ -1,61 +1,87 @@
 const container = document.querySelector("#container");
+container.style.border = "1px solid red";
 const containerWidth = 300;
 const inputField = document.querySelector("input");
-let setNumber = Number(inputField.value);
-let button = document.querySelector("button");
+let setNumber = 30;
+const button = document.querySelector("button");
 
-//let setNumber = prompt("Enter a number between 2 and 100", "");
+inputField.addEventListener("input", () => {
+     setNumber = Number(inputField.value);
+     console.log(setNumber);
+     squareWidth = containerWidth/setNumber;
+     squareWidth = squareWidth.toFixed(1);
+     if ((squareWidth * setNumber) > containerWidth) {
+    	squareWidth = squareWidth - 0.1 + "px";
+	 }
+     else squareWidth = squareWidth + "px";
+     console.log(squareWidth);
+     removeSquares();
+     addRows();
+     //addSquares();     
+});      
 
+//inputField.addEventListener("input", updateGrid);
+button.addEventListener("click", removeSquares);
+//inputField.addEventListener("input", getSquareWidth);
+//inputField.addEventListener("input", addRows);
+//button.addEventListener("click", addSquares);
 
- let squareWidth = containerWidth/setNumber;
-
-
-   
-
+let squareWidth = containerWidth/setNumber;
+     squareWidth = squareWidth.toFixed(1); 
+// To ensure that total area of squares doesn't exceed that of container: 
+     if ((squareWidth * setNumber) > containerWidth) {
+    	squareWidth = squareWidth - 0.1 + "px";
+	 }
+     else squareWidth = squareWidth + "px";
+     console.log(squareWidth);
 
 // The below code works a little better: grids with any number of squares fit within container, but some leave a gap/margin inside the border
 //squareWidth = Math.floor(squareWidth) + "px";
 // NO - even worse: 
 //squareWidth = Math.ceil(squareWidth) + "px";
-
-
-
-// To ensure that total area of squares doesn't exceed that of container: 
-if ((squareWidth * setNumber) > containerWidth) {
-    squareWidth = squareWidth - 0.1 + "px";
-	}
-else squareWidth = squareWidth + "px";
-
-//console.log(squareWidth); 
+let rows;
+let squares;
 
 function addRows() {
-	for(let r = 1; r <= setNumber; r++) {
+	for(let r = 0; r < setNumber; r++) {
 		const row = document.createElement("div");
-        row.className = "row";
+                row.className = "row";
 		row.style.height = squareWidth;
 		container.appendChild(row);
 	}
+rows = Array.from(document.getElementsByClassName("row"));
+console.log(rows);
+addSquares();
 }
 
 addRows();
 
-const rows = Array.from(document.getElementsByClassName("row"));
-console.log(rows);
- 
+
+
 function addSquares() {
 	for (let i = 0; i < rows.length; ++i) {	
-        for (let s = 1; s <= setNumber; ++s) {
+        for (let s = 0; s < setNumber; ++s) {
  	     	 const square = document.createElement("div");    
 		 	 square.style.boxSizing = "border-box";
 			 square.style.width = squareWidth;    
-        	 square.style.height = squareWidth;
+        	         square.style.height = squareWidth;
 			 square.className = "square";
 		 	 rows[i].appendChild(square); 
 		}
 	}
+squares = Array.from(document.getElementsByClassName("square"));
+return squares;
 }
 
-addSquares();
+//addSquares();
+
+function removeSquares() {
+	rows.forEach(row => {	        
+             container.removeChild(row);
+		});
+}
+
+
 
 const letters = Array.from(document.getElementsByTagName("span"));
 letters.forEach(letter => {
@@ -76,7 +102,7 @@ function makeVisible() {
 	}
 }
 
-const squares = Array.from(document.getElementsByClassName("square"));
+
 let mouseIsDown;
 
 const pastel = document.getElementById("pastel");
@@ -109,7 +135,7 @@ const colourSquares = function () {
 		else if (this.className == "square pen") {
 		this.style.backgroundColor = "black";
 		}
-        else this.style.backgroundColor = "black"; ;
+        else this.style.backgroundColor = "black"; 
 	}
 };
 
@@ -138,15 +164,3 @@ squares.forEach(square => {
 	});
 });
 
-inputField.addEventListener("input", updateGrid);
-
-function updateGrid(squareWidth) {
-	 setNumber = Number(inputField.value);
-     console.log(setNumber);
-     squareWidth = containerWidth/setNumber;
-     squareWidth = squareWidth.toFixed(1);
-     console.log(squareWidth);
-     return squareWidth;
-}
-    
-	
