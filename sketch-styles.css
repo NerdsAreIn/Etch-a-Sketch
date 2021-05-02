@@ -1,3 +1,6 @@
+*:focus {
+outline: none;
+}
 body {
 background-image: url("sketch-images/blank paper.jpg");
 background-size: 100vw 100vh;
@@ -34,18 +37,29 @@ font-size: 24px;
 }
 #resizeGrid {
 position: absolute;
-left: 22vw;
-top: 125px;
+left: 21vw;
+top: 135px;
 padding: 5px;
 font-family: "scribble-script";
 font-size: 20px;
+text-align: center;
 }
 input {
 width: 50px;
-margin: 5px 22px;
+margin: 10px auto;
 border-radius: 3px;
 font-family: "scribble-script";
 text-align: center;
+border: 1px solid grey;
+padding: 3px;
+}
+input:focus, button:focus, input:hover, button:hover {
+box-shadow: 2px 2px 15px white;
+outline: 1px solid #aaa;
+}
+img:focus, img:active, img:hover {
+/*box-shadow: 1px 1px 15px white;*/
+outline: 1px solid #eee;
 }
 #tools-div {
 position: absolute;
@@ -79,7 +93,14 @@ opacity: 0;
 .letter.visible {
 opacity: 1;
 }
-
+button {
+font-family: "scrapbooking";
+font-size: 16px;
+margin: 20px auto;
+border-radius: 3px;
+border: none;
+padding: 5px;
+}
 #E {
 
 }

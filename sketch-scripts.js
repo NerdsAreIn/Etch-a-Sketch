@@ -22,6 +22,7 @@ let setNumber = 30;
 inputField.addEventListener("input", () => {
      setNumber = Number(inputField.value);
      console.log(setNumber);
+     if (setNumber > 1 && setNumber < 81) {
      squareWidth = containerWidth/setNumber;
      squareWidth = squareWidth.toFixed(1);
      if ((squareWidth * setNumber) > containerWidth) {
@@ -30,12 +31,14 @@ inputField.addEventListener("input", () => {
      else squareWidth = squareWidth + "px";
      console.log(squareWidth);
      removeRows();
-	 addRows();         
+     addRows(); 
+	 }
+    else return;        
 });      
 
-button.onclick = () => {
-	removeRows();
-}
+/*button.onclick = () => {
+    removeRows();
+	}*/
 
 let squareWidth = containerWidth/setNumber;
      squareWidth = squareWidth.toFixed(1); 
