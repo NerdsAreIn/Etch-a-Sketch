@@ -1,9 +1,23 @@
 const container = document.querySelector("#container");
-container.style.border = "1px solid red";
 const containerWidth = 300;
 const inputField = document.querySelector("input");
-let setNumber = 30;
 const button = document.querySelector("button");
+const colourSquares = function () {
+	if (mouseIsDown) {
+        if (this.className == "square pastel") {
+		this.style.backgroundColor = "#9e606f";
+		}
+		else if (this.className == "square eraser") {
+		this.style.backgroundColor = "white";
+		}
+		else if (this.className == "square pen") {
+		this.style.backgroundColor = "black";
+		}
+        else this.style.backgroundColor = "black"; 
+	}
+}
+
+let setNumber = 30;
 
 inputField.addEventListener("input", () => {
      setNumber = Number(inputField.value);
@@ -11,26 +25,23 @@ inputField.addEventListener("input", () => {
      squareWidth = containerWidth/setNumber;
      squareWidth = squareWidth.toFixed(1);
      if ((squareWidth * setNumber) > containerWidth) {
-    	squareWidth = squareWidth - 0.1 + "px";
+	 	squareWidth = squareWidth - 0.1 + "px";
 	 }
      else squareWidth = squareWidth + "px";
      console.log(squareWidth);
-     removeSquares();
-     addRows();
-     //addSquares();     
+     removeRows();
+	 addRows();         
 });      
 
-//inputField.addEventListener("input", updateGrid);
-button.addEventListener("click", removeSquares);
-//inputField.addEventListener("input", getSquareWidth);
-//inputField.addEventListener("input", addRows);
-//button.addEventListener("click", addSquares);
+button.onclick = () => {
+	removeRows();
+}
 
 let squareWidth = containerWidth/setNumber;
      squareWidth = squareWidth.toFixed(1); 
 // To ensure that total area of squares doesn't exceed that of container: 
      if ((squareWidth * setNumber) > containerWidth) {
-    	squareWidth = squareWidth - 0.1 + "px";
+    	  squareWidth = squareWidth - 0.1 + "px";
 	 }
      else squareWidth = squareWidth + "px";
      console.log(squareWidth);
@@ -39,13 +50,14 @@ let squareWidth = containerWidth/setNumber;
 //squareWidth = Math.floor(squareWidth) + "px";
 // NO - even worse: 
 //squareWidth = Math.ceil(squareWidth) + "px";
+
 let rows;
 let squares;
 
 function addRows() {
 	for(let r = 0; r < setNumber; r++) {
 		const row = document.createElement("div");
-                row.className = "row";
+        row.className = "row";
 		row.style.height = squareWidth;
 		container.appendChild(row);
 	}
@@ -55,8 +67,6 @@ addSquares();
 }
 
 addRows();
-
-
 
 function addSquares() {
 	for (let i = 0; i < rows.length; ++i) {	
@@ -70,18 +80,15 @@ function addSquares() {
 		}
 	}
 squares = Array.from(document.getElementsByClassName("square"));
+addHandlers();
 return squares;
 }
 
-//addSquares();
-
-function removeSquares() {
+function removeRows() {
 	rows.forEach(row => {	        
              container.removeChild(row);
 		});
 }
-
-
 
 const letters = Array.from(document.getElementsByTagName("span"));
 letters.forEach(letter => {
@@ -101,7 +108,6 @@ function makeVisible() {
         timeIndex += 2;
 	}
 }
-
 
 let mouseIsDown;
 
@@ -124,22 +130,7 @@ const eraser = document.getElementById("eraser");
 	})
 };
 
-const colourSquares = function () {
-	if (mouseIsDown) {
-        if (this.className == "square pastel") {
-		this.style.backgroundColor = "#9e606f";
-		}
-		else if (this.className == "square eraser") {
-		this.style.backgroundColor = "white";
-		}
-		else if (this.className == "square pen") {
-		this.style.backgroundColor = "black";
-		}
-        else this.style.backgroundColor = "black"; 
-	}
-};
-
-
+function addHandlers() {
 squares.forEach(square => {
 	square.addEventListener("mousedown", () => {
          mouseIsDown = true;
@@ -163,4 +154,4 @@ squares.forEach(square => {
         else square.style.backgroundColor = "black"; ;
 	});
 });
-
+}
