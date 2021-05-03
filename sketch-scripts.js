@@ -19,26 +19,33 @@ const colourSquares = function () {
 
 let setNumber = 30;
 
-inputField.addEventListener("input", () => {
-     setNumber = Number(inputField.value);
-     console.log(setNumber);
-     if (setNumber > 1 && setNumber < 81) {
-     squareWidth = containerWidth/setNumber;
-     squareWidth = squareWidth.toFixed(1);
-     if ((squareWidth * setNumber) > containerWidth) {
-	 	squareWidth = squareWidth - 0.1 + "px";
-	 }
-     else squareWidth = squareWidth + "px";
-     console.log(squareWidth);
-     removeRows();
-     addRows(); 
-	 }
-    else return;        
-});      
 
-/*button.onclick = () => {
-    removeRows();
-	}*/
+inputField.addEventListener("input", inputHandler);
+
+function inputHandler() {
+    setTimeout(function() {
+     	setNumber = Number(inputField.value);
+     	console.log(setNumber);
+     	if (setNumber > 1 && setNumber < 81) {
+     		squareWidth = containerWidth/setNumber;
+     		squareWidth = squareWidth.toFixed(1);
+     		if ((squareWidth * setNumber) > containerWidth) {
+	 			squareWidth = squareWidth - 0.1 + "px";
+	 		}
+     		else squareWidth = squareWidth + "px";
+     		console.log(squareWidth);
+     		removeRows();			
+     		addRows();
+		}	 
+     	else return;	 
+	}, 1000);
+}            
+
+button.onclick = () => {
+    squares.forEach(square => {
+		square.style.backgroundColor = "white";	
+	})
+	}
 
 let squareWidth = containerWidth/setNumber;
      squareWidth = squareWidth.toFixed(1); 
@@ -77,7 +84,7 @@ function addSquares() {
  	     	 const square = document.createElement("div");    
 		 	 square.style.boxSizing = "border-box";
 			 square.style.width = squareWidth;    
-        	         square.style.height = squareWidth;
+        	 square.style.height = squareWidth;
 			 square.className = "square";
 		 	 rows[i].appendChild(square); 
 		}
