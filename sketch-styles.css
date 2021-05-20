@@ -38,7 +38,7 @@ font-size: 24px;
 #resizeGrid {
 position: absolute;
 left: 21vw;
-top: 135px;
+top: 115px;
 padding: 5px;
 font-family: "scribble-script";
 font-size: 20px;
@@ -96,7 +96,7 @@ opacity: 1;
 button {
 font-family: "scrapbooking";
 font-size: 16px;
-margin: 20px auto;
+margin: 19px auto;
 border-radius: 3px;
 border: none;
 padding: 5px;
